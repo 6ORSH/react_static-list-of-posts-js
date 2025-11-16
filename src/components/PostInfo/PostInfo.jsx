@@ -2,11 +2,7 @@ import './PostInfo.scss';
 import { UserInfo } from '../UserInfo/UserInfo';
 import { CommentList } from '../CommentList/CommentList';
 
-export const PostInfo = ({
-  post: { id, userId, title, body },
-  comments,
-  users,
-}) => {
+export const PostInfo = ({ post: { title, body, author, comments } }) => {
   return (
     <div className="PostInfo">
       <div className="PostInfo__header">
@@ -15,15 +11,13 @@ export const PostInfo = ({
         <p>
           {' Posted by  '}
 
-          <UserInfo user={users.find(user => user.id === userId)} />
+          <UserInfo user={author} />
         </p>
       </div>
 
       <p className="PostInfo__body">{body}</p>
 
-      <CommentList
-        comments={comments.filter(comment => comment.postId === id)}
-      />
+      <CommentList comments={comments} />
     </div>
   );
 };

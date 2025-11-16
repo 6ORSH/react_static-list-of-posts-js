@@ -1,4 +1,10 @@
-export const CommentInfo = ({ commentInfo: { name, email, body } }) => {
+export const CommentInfo = ({ commentInfo }) => {
+  if (!commentInfo) {
+    return null;
+  }
+
+  const { name, email, body } = commentInfo;
+
   return (
     <div className="CommentInfo">
       <div className="CommentInfo__title">

@@ -6,13 +6,20 @@ import usersFromServer from './api/users.json';
 
 import { PostList } from './components/PostList/PostList';
 
-export const App = () => (
-  <section className="App">
-    <h1 className="App__title">Static list of posts</h1>
-    <PostList
-      posts={postsFromServer}
-      comments={commentsFromServer}
-      users={usersFromServer}
-    />
-  </section>
-);
+export const App = () => {
+  const posts = postsFromServer.map(post => {
+    const author = usersFromServer.find(user => user.id === post.userId);
+    const comments = commentsFromServer.filter(
+      comment => comment.postId === post.id,
+    );
+
+    return { ...post, author, comments };
+  });
+
+  return (
+    <section className="App">
+      <h1 className="App__title">Static list of posts</h1>
+      <PostList posts={posts} />
+    </section>
+  );
+};
