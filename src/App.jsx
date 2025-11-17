@@ -8,12 +8,12 @@ import { PostList } from './components/PostList/PostList';
 
 export const App = () => {
   const posts = postsFromServer.map(post => {
-    const author = usersFromServer.find(user => user.id === post.userId);
+    const user = usersFromServer.find(author => author.id === post.userId);
     const comments = commentsFromServer.filter(
       comment => comment.postId === post.id,
     );
 
-    return { ...post, author, comments };
+    return { ...post, user, comments };
   });
 
   return (

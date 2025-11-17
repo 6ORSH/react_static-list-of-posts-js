@@ -1,9 +1,9 @@
-export const CommentInfo = ({ commentInfo }) => {
-  if (!commentInfo) {
+export const CommentInfo = ({ comment }) => {
+  if (!comment) {
     return null;
   }
 
-  const { name, email, body } = commentInfo;
+  const { name, email, body } = comment;
 
   return (
     <div className="CommentInfo">
